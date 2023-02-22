@@ -5,6 +5,8 @@ import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +49,7 @@ public class AppController {
 	
 
 	//Post Method for 1 user
-	@PostMapping("/social/users/")
+	@PostMapping("/social/users")
 	public ResponseEntity<Users> postOneUser(@Valid @RequestBody Users user)
 		{
 			Users newUser=service.addOneUser(user) ;
@@ -58,14 +60,16 @@ public class AppController {
 					.buildAndExpand(newUser.getId()).toUri();
 			return ResponseEntity.created(location).build();
 			
+			
 		}
 	
 
 	
 	//delete method for 1 user
-//	@PostMapping("users/{id}")
-//	public void deleteOneUser(@PathVariable int id)
-//		{
-//		}
-//		
+	@DeleteMapping("/social/users/{id}")
+	public void deleteOneUser(@PathVariable int id)
+		{
+			service.deleteOneUser(id);			
+		}
+		
 }

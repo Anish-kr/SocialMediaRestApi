@@ -40,5 +40,16 @@ public class DaoService {
 		return user;
 	}
 
+	public void deleteOneUser(int id) {
+		// TODO Auto-generated method stub
+		int i=0;
+		for(Users user:users)
+		{
+			if(user.getId().equals(id))
+				users.remove(i);
+			i++;
+		}
+	}
+
 	
 }
