@@ -1,8 +1,10 @@
 package com.example.Project1.SocialMediaApp;
 
 import java.lang.*;
-import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
@@ -12,16 +14,20 @@ import jakarta.validation.constraints.Size;
 
 public class Users {
 
-	
+	@Positive
+	@JsonProperty("User_Id")
 	private Integer id;
 	
 	@Size(min=2,message="minimum two characters required")
+	@JsonProperty("User_Name")
 	private String name;
 	
 	@Size(max=1,message="M=male, F=Female, O=Others")
+	@JsonProperty("User_Gender")
 	private String Gender;
 	
 	@PositiveOrZero
+	@JsonProperty("User_Age")
 	private Integer age;
 	
 	public Users(Integer id, String name, String gender, Integer age) {

@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -33,6 +35,7 @@ public class AppController {
 		return service.allUserList();
 		}
 	
+	
 	//get method for 1 user
 	@GetMapping("/social/users/{id}") 
 	public Users getOneUser(@PathVariable int id)
@@ -43,8 +46,7 @@ public class AppController {
 			 throw new UserNotFoundException(null);
 			}
 			else
-				return Oneuser;
-		 
+				return Oneuser; 
 		}
 	
 
@@ -59,8 +61,6 @@ public class AppController {
 					.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(newUser.getId()).toUri();
 			return ResponseEntity.created(location).build();
-			
-			
 		}
 	
 
@@ -72,4 +72,5 @@ public class AppController {
 			service.deleteOneUser(id);			
 		}
 		
+	
 }
